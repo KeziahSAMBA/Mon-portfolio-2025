@@ -36,24 +36,7 @@ export default function Header() {
   const dirContact = useRef(1);
   const pauseContact = useRef(false);
 
-  const name = "Keziah SAMBA";
-
   useEffect(() => {
-    animate(".samba-letter", {
-      y: [
-        { to: "-2.75rem", ease: "outExpo", duration: 600 },
-        { to: 0, ease: "outBounce", duration: 800, delay: 100 },
-      ],
-      rotate: {
-        from: "-1turn",
-        delay: 0,
-      },
-      delay: (_, i) => i * 50,
-      ease: "inOutCirc",
-      loopDelay: 1000,
-      loop: true,
-    });
-
     let lastTime = performance.now();
     function animateRubriques(now: number) {
       const dt = now - lastTime;
@@ -124,37 +107,50 @@ export default function Header() {
           <div className="w-[px] h-20"></div>
           <div className="col-span-1 relative h-30 flex items-center justify-center font-bold text-[2em] bg-cover bg-center">
             <div className="invisible"></div>
-            <span className="relative z-10 flex gap-1 text-white">
-              {name.split("").map((char, i) => (
+            <span className="relative z-10 flex flex-col gap-1 text-white">
+              <div className="relative group inline-block">
+                <div>
+                  <p
+                    className="font-montserrat text-white text-[16px] font-light"
+                    style={{ fontWeight: 300 }}
+                  >
+                    Bienvenu sur le portfolio de
+                  </p>
+                  <p
+                    className="font-montserrat text-white text-[30px] font-semibold"
+                    style={{ fontWeight: 600 }}
+                  >
+                    Keziah SAMBA
+                  </p>
+                </div>
+
+                {/* ligne du haut */}
                 <span
-                  key={i}
-                  className="samba-letter inline-block"
-                  style={{
-                    display: "inline-block",
-                    transform: "translateZ(0)",
-                  }}
-                >
-                  {char === " " ? "\u00A0" : char}
-                </span>
-              ))}
+                  className="absolute top-0 left-0 h-[2px] w-[92%]
+               bg-gradient-to-r from-red-500 to-cyan-400
+               scale-x-0 group-hover:scale-x-100
+               origin-right
+               transition-transform duration-400"
+                ></span>
+
+                {/* ligne du bas */}
+                <span
+                  className="absolute bottom-0 left-0 h-[2px] w-[102%]
+               bg-gradient-to-r from-red-500 to-cyan-400
+               scale-x-0 group-hover:scale-x-100
+               origin-left
+               transition-transform duration-400"
+                ></span>
+              </div>
             </span>
           </div>
           <Link
             href="/"
             ref={refProjets}
-            className="group relative h-20 w-full flex items-center justify-center"
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "5rem",
-              outline: "0px solid transparent",
-              outlineOffset: "0px",
-              transition: "outline 0.3s, outline-offset 0.3s",
-              cursor: "pointer",
-            }}
+            className="group relative h-20 w-full flex items-center justify-center cursor-pointer"
             onMouseEnter={(e) => {
               pauseProjets.current = true;
-              e.currentTarget.style.outline = "4px solid #000";
+              e.currentTarget.style.outline = "4px solid #fff";
               e.currentTarget.style.outlineOffset = "1px";
             }}
             onMouseLeave={(e) => {
@@ -162,41 +158,41 @@ export default function Header() {
               e.currentTarget.style.outline = "0px solid transparent";
               e.currentTarget.style.outlineOffset = "0px";
             }}
+            style={{
+              outline: "0px solid transparent",
+              outlineOffset: "0px",
+              transition: "outline 0.3s, outline-offset 0.3s",
+            }}
           >
             <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:rotate-y-180">
-              {/* Face avant */}
               <div
-                className="absolute inset-0 flex items-center justify-center bg-cover bg-center border-2 border-white overflow-hidden [backface-visibility:hidden]"
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden]"
                 style={{ backgroundImage: "url('/code.jpg')" }}
               >
+                <div className="absolute inset-0 bg-black/40 z-0" />
                 <span className="relative z-10 text-white text-lg font-medium">
                   Projets
                 </span>
               </div>
-              {/* Face arrière */}
-              <div className="absolute inset-0 flex items-center justify-center bg-white border-2 border-white overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              <div
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                style={{ backgroundImage: "url('/code.jpg')" }}
+              >
+                <div className="absolute inset-0 bg-white/40 z-0" />
                 <span className="relative z-10 text-black text-lg font-medium">
                   Projets
                 </span>
               </div>
             </div>
           </Link>
+
           <Link
             href="/"
             ref={refCompetences}
-            className="group relative h-20 w-full flex items-center justify-center"
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "5rem",
-              outline: "0px solid transparent",
-              outlineOffset: "0px",
-              transition: "outline 0.3s, outline-offset 0.3s",
-              cursor: "pointer",
-            }}
+            className="group relative h-20 w-full flex items-center justify-center cursor-pointer"
             onMouseEnter={(e) => {
               pauseCompetences.current = true;
-              e.currentTarget.style.outline = "4px solid #000";
+              e.currentTarget.style.outline = "4px solid #fff";
               e.currentTarget.style.outlineOffset = "1px";
             }}
             onMouseLeave={(e) => {
@@ -204,39 +200,41 @@ export default function Header() {
               e.currentTarget.style.outline = "0px solid transparent";
               e.currentTarget.style.outlineOffset = "0px";
             }}
+            style={{
+              outline: "0px solid transparent",
+              outlineOffset: "0px",
+              transition: "outline 0.3s, outline-offset 0.3s",
+            }}
           >
             <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:rotate-y-180">
               <div
-                className="absolute inset-0 flex items-center justify-center bg-cover bg-center border-2 border-white overflow-hidden [backface-visibility:hidden]"
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden]"
                 style={{ backgroundImage: "url('/competence.jpg')" }}
               >
+                <div className="absolute inset-0 bg-black/40 z-0" />
                 <span className="relative z-10 text-white text-lg font-medium">
                   Compétences
                 </span>
               </div>
-              <div className="absolute inset-0 flex items-center justify-center bg-white border-2 border-white overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              <div
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                style={{ backgroundImage: "url('/competence.jpg')" }}
+              >
+                <div className="absolute inset-0 bg-white/40 z-0" />
                 <span className="relative z-10 text-black text-lg font-medium">
                   Compétences
                 </span>
               </div>
             </div>
           </Link>
+
           <Link
             href="/"
             ref={refExperiences}
-            className="group relative h-20 w-full flex items-center justify-center"
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "5rem",
-              outline: "0px solid transparent",
-              outlineOffset: "0px",
-              transition: "outline 0.3s, outline-offset 0.3s",
-              cursor: "pointer",
-            }}
+            className="group relative h-20 w-full flex items-center justify-center cursor-pointer"
             onMouseEnter={(e) => {
               pauseExperiences.current = true;
-              e.currentTarget.style.outline = "4px solid #000";
+              e.currentTarget.style.outline = "4px solid #fff";
               e.currentTarget.style.outlineOffset = "1px";
             }}
             onMouseLeave={(e) => {
@@ -244,39 +242,41 @@ export default function Header() {
               e.currentTarget.style.outline = "0px solid transparent";
               e.currentTarget.style.outlineOffset = "0px";
             }}
+            style={{
+              outline: "0px solid transparent",
+              outlineOffset: "0px",
+              transition: "outline 0.3s, outline-offset 0.3s",
+            }}
           >
             <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:rotate-y-180">
               <div
-                className="absolute inset-0 flex items-center justify-center bg-cover bg-center border-2 border-white overflow-hidden [backface-visibility:hidden]"
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden]"
                 style={{ backgroundImage: "url('/XP.jpg')" }}
               >
+                <div className="absolute inset-0 bg-black/40 z-0" />
                 <span className="relative z-10 text-white text-lg font-medium">
                   Expériences
                 </span>
               </div>
-              <div className="absolute inset-0 flex items-center justify-center bg-white border-2 border-white overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              <div
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                style={{ backgroundImage: "url('/XP.jpg')" }}
+              >
+                <div className="absolute inset-0 bg-white/40 z-0" />
                 <span className="relative z-10 text-black text-lg font-medium">
                   Expériences
                 </span>
               </div>
             </div>
           </Link>
+
           <Link
             href="/"
             ref={refFormations}
-            className="group relative h-20 w-full flex items-center justify-center"
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "5rem",
-              outline: "0px solid transparent",
-              outlineOffset: "0px",
-              transition: "outline 0.3s, outline-offset 0.3s",
-              cursor: "pointer",
-            }}
+            className="group relative h-20 w-full flex items-center justify-center cursor-pointer"
             onMouseEnter={(e) => {
               pauseFormations.current = true;
-              e.currentTarget.style.outline = "4px solid #000";
+              e.currentTarget.style.outline = "4px solid #fff";
               e.currentTarget.style.outlineOffset = "1px";
             }}
             onMouseLeave={(e) => {
@@ -284,39 +284,41 @@ export default function Header() {
               e.currentTarget.style.outline = "0px solid transparent";
               e.currentTarget.style.outlineOffset = "0px";
             }}
+            style={{
+              outline: "0px solid transparent",
+              outlineOffset: "0px",
+              transition: "outline 0.3s, outline-offset 0.3s",
+            }}
           >
             <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:rotate-y-180">
               <div
-                className="absolute inset-0 flex items-center justify-center bg-cover bg-center border-2 border-white overflow-hidden [backface-visibility:hidden]"
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden]"
                 style={{ backgroundImage: "url('/formation.jpg')" }}
               >
+                <div className="absolute inset-0 bg-black/40 z-0" />
                 <span className="relative z-10 text-white text-lg font-medium">
                   Formations
                 </span>
               </div>
-              <div className="absolute inset-0 flex items-center justify-center bg-white border-2 border-white overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              <div
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                style={{ backgroundImage: "url('/formation.jpg')" }}
+              >
+                <div className="absolute inset-0 bg-white/40 z-0" />
                 <span className="relative z-10 text-black text-lg font-medium">
                   Formations
                 </span>
               </div>
             </div>
           </Link>
+
           <Link
             href="/"
             ref={refApropos}
-            className="group relative h-20 w-full flex items-center justify-center"
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "5rem",
-              outline: "0px solid transparent",
-              outlineOffset: "0px",
-              transition: "outline 0.3s, outline-offset 0.3s",
-              cursor: "pointer",
-            }}
+            className="group relative h-20 w-full flex items-center justify-center cursor-pointer"
             onMouseEnter={(e) => {
               pauseApropos.current = true;
-              e.currentTarget.style.outline = "4px solid #000";
+              e.currentTarget.style.outline = "4px solid #fff";
               e.currentTarget.style.outlineOffset = "1px";
             }}
             onMouseLeave={(e) => {
@@ -324,39 +326,41 @@ export default function Header() {
               e.currentTarget.style.outline = "0px solid transparent";
               e.currentTarget.style.outlineOffset = "0px";
             }}
+            style={{
+              outline: "0px solid transparent",
+              outlineOffset: "0px",
+              transition: "outline 0.3s, outline-offset 0.3s",
+            }}
           >
             <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:rotate-y-180">
               <div
-                className="absolute inset-0 flex items-center justify-center bg-cover bg-center border-2 border-white overflow-hidden [backface-visibility:hidden]"
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden]"
                 style={{ backgroundImage: "url('/chemin.jpg')" }}
               >
+                <div className="absolute inset-0 bg-black/40 z-0" />
                 <span className="relative z-10 text-white text-lg font-medium">
                   A propos
                 </span>
               </div>
-              <div className="absolute inset-0 flex items-center justify-center bg-white border-2 border-white overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              <div
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                style={{ backgroundImage: "url('/chemin.jpg')" }}
+              >
+                <div className="absolute inset-0 bg-white/40 z-0" />
                 <span className="relative z-10 text-black text-lg font-medium">
                   A propos
                 </span>
               </div>
             </div>
           </Link>
+
           <Link
             href="/"
             ref={refContact}
-            className="group relative h-20 w-full flex items-center justify-center"
-            style={{
-              position: "relative",
-              width: "100%",
-              height: "5rem",
-              outline: "0px solid transparent",
-              outlineOffset: "0px",
-              transition: "outline 0.3s, outline-offset 0.3s",
-              cursor: "pointer",
-            }}
+            className="group relative h-20 w-full flex items-center justify-center cursor-pointer"
             onMouseEnter={(e) => {
               pauseContact.current = true;
-              e.currentTarget.style.outline = "4px solid #000";
+              e.currentTarget.style.outline = "4px solid #fff";
               e.currentTarget.style.outlineOffset = "1px";
             }}
             onMouseLeave={(e) => {
@@ -364,17 +368,27 @@ export default function Header() {
               e.currentTarget.style.outline = "0px solid transparent";
               e.currentTarget.style.outlineOffset = "0px";
             }}
+            style={{
+              outline: "0px solid transparent",
+              outlineOffset: "0px",
+              transition: "outline 0.3s, outline-offset 0.3s",
+            }}
           >
             <div className="relative w-full h-full transition-transform duration-500 [transform-style:preserve-3d] group-hover:rotate-y-180">
               <div
-                className="absolute inset-0 flex items-center justify-center bg-cover bg-center border-2 border-white overflow-hidden [backface-visibility:hidden]"
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden]"
                 style={{ backgroundImage: "url('/reseaux.jpg')" }}
               >
+                <div className="absolute inset-0 bg-black/40 z-0" />
                 <span className="relative z-10 text-white text-lg font-medium">
                   Contact
                 </span>
               </div>
-              <div className="absolute inset-0 flex items-center justify-center bg-white border-2 border-white overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]">
+              <div
+                className="absolute inset-0 flex items-center justify-center bg-cover bg-center overflow-hidden [backface-visibility:hidden] [transform:rotateY(180deg)]"
+                style={{ backgroundImage: "url('/reseaux.jpg')" }}
+              >
+                <div className="absolute inset-0 bg-white/40 z-0" />
                 <span className="relative z-10 text-black text-lg font-medium">
                   Contact
                 </span>

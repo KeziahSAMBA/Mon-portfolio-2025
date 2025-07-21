@@ -10,10 +10,10 @@ export default function Home() {
         style={{ backgroundImage: "url('/vague.jpg')" }}
       />
       <div className="absolute inset-0 bg-black/75 -z-10" />
-
-      {/* Contenu au-dessus */}
       <Header />
-      <main>{/* Ton contenu ici */}</main>
+      <main>
+        
+      </main>
     </div>
   );
 }
